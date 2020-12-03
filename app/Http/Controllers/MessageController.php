@@ -65,4 +65,15 @@ class MessageController extends Controller
         
         return response()->json(['status' => 'Message Sent']);
     }
+
+    public function clearMessages()
+    {
+        $user = Auth::user();
+
+        $affectedRows = Message::where('owner_id', '=', $user->id)->delete();
+
+        return Message::with('user')
+            ->where('owner_id', $user->id)
+            ->get();
+    }
 }

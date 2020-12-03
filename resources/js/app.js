@@ -67,11 +67,18 @@ const app = new Vue({
             });
         },
 
+        clearMessages() {
+            axios.get('/messages/clear').then(response => {
+                this.messages = response.data;
+            });
+        },
+
         addMessage(message) {
             axios.post('/messages', message).then(response => {
                 console.log(response.data);
             });
             this.newMessage = '';
         },
+
     }
 });

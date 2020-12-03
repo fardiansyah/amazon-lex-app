@@ -1921,6 +1921,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
@@ -1935,6 +1938,9 @@ __webpack_require__.r(__webpack_exports__);
         message: this.message
       });
       this.message = '';
+    },
+    clearMessage: function clearMessage() {
+      this.$emit('clear');
     }
   }
 });
@@ -40351,6 +40357,16 @@ var render = function() {
           on: { click: _vm.submit }
         },
         [_vm._v("\n            Send\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-sm",
+          attrs: { id: "btn-clear" },
+          on: { click: _vm.clearMessage }
+        },
+        [_vm._v("\n            Clear\n        ")]
       )
     ])
   ])
@@ -52648,6 +52664,13 @@ var app = new Vue({
 
       axios.get('/messages').then(function (response) {
         _this2.messages = response.data;
+      });
+    },
+    clearMessages: function clearMessages() {
+      var _this3 = this;
+
+      axios.get('/messages/clear').then(function (response) {
+        _this3.messages = response.data;
       });
     },
     addMessage: function addMessage(message) {

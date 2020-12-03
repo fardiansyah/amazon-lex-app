@@ -15,6 +15,7 @@
                     <div class="card-footer">
                         <chat-form
                             v-on:sent="addMessage"
+                            v-on:clear="clearMessages"
                             :user="{{ Auth::user() }}"
                         ></chat-form>
                     </div>

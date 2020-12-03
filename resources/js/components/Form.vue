@@ -7,6 +7,9 @@
           	<button class="btn btn-primary btn-sm" id="btn-chat" @click="submit">
                 Send
             </button>
+            <button class="btn btn-danger btn-sm" id="btn-clear" @click="clearMessage">
+                Clear
+            </button>
         </div>
     </div>
 </template>
@@ -28,6 +31,9 @@
                 });
 
                 this.message = ''
+            },
+            clearMessage() {
+                this.$emit('clear');
             }
         }    
     }
