@@ -1,8 +1,36 @@
 # Setup Guide
 
-1. composer install
-2. cp .env.example .env
-3. set .env value (AWS, Larasocket)
-4. php artisan key:generate
-5. npm install
-6. npm run prod
+Run these commands inside application directory.
+
+```console
+$ composer install
+$ cp .env.example .env
+```
+
+Open .env file and set AWS and Larasocket configuration
+```text
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+
+LARASOCKET_TOKEN=
+```
+Set database connection settings
+```text
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
+Back to application directory, and run this commands
+
+```console
+$ php artisan key:generate
+$ php artisan migrate --seed
+```
+
+Build JS files
+
+```console
+$ npm install
+$ npm run prod
+```
