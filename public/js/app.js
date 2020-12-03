@@ -1971,6 +1971,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data']
 });
@@ -40436,6 +40446,26 @@ var render = function() {
     _vm._v(" "),
     _c("li", { staticClass: "left clearfix" }, [
       _c("div", [
+        _vm._v(
+          "\n            intentName: " +
+            _vm._s(_vm.data.intentName) +
+            "\n        "
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("li", { staticClass: "left clearfix" }, [
+      _c("div", [
+        _vm._v(
+          "\n            nluIntentConfidence - score: " +
+            _vm._s(_vm.data.nluIntentConfidence.score) +
+            "\n        "
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("li", { staticClass: "left clearfix" }, [
+      _c("div", [
         _vm._v("\n            slots: " + _vm._s(_vm.data.slots) + "\n        ")
       ])
     ])
@@ -52716,6 +52746,10 @@ var app = new Vue({
     newMessage: '',
     lexData: {
       dialogState: "",
+      intentName: "",
+      nluIntentConfidence: {
+        score: 0
+      },
       slots: {}
     }
   },

@@ -45,9 +45,7 @@ const app = new Vue({
         lexData: {
             dialogState: "",
             intentName: "",
-            nluIntentConfidence:{
-                score: 0
-            },
+            sessionId: "",
             slots: {}
         }
     },
