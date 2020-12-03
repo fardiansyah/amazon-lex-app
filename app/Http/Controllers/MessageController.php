@@ -52,11 +52,11 @@ class MessageController extends Controller
                     'message' => $result['message'],
                     'owner_id' => $user->id
                 ]);
+
+                //broadcast lex response
+                broadcast(new MessageSentEvent($lex_response_message, $lex_user, $user->id));
             }
-
-
-            //broadcast lex response
-            broadcast(new MessageSentEvent($lex_response_message, $lex_user, $user->id));
+            
         } catch (AwsException $e) {
             // output error message if fails
             error_log($e->getMessage());
