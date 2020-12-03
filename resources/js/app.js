@@ -19,13 +19,20 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content');
+
+import Messages from './components/Messages.vue'
+import Form from './components/Form.vue'
+
+Vue.component('chat-messages', Messages);
+Vue.component('chat-form', Form);
 
 const app = new Vue({
     el: '#app',
@@ -38,13 +45,19 @@ const app = new Vue({
     created() {
         this.fetchMessages();
 
-        Echo.private('chat')
-            .listen('MessageSentEvent', (e) => {
+        Echo.private('chat.' + this.$userId)
+            .listen('.chat.message-sent', (e) => {
                 this.messages.push({
                     message: e.message.message,
                     user: e.user
                 });
             });
+    },
+
+    watch: {
+        messages: function(val){
+            this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight
+        }
     },
 
     methods: {
@@ -55,19 +68,10 @@ const app = new Vue({
         },
 
         addMessage(message) {
-            axios.post('/messages', {
-                message
-            }).then(response => {
-                this.messages.push({
-                    message: response.data.message.message,
-                    user: response.data.user
-                });
+            axios.post('/messages', message).then(response => {
+                console.log(response.data);
             });
-        },
-
-        sendMessage() {
-            this.addMessage(this.newMessage);
             this.newMessage = '';
-        }
+        },
     }
 });
