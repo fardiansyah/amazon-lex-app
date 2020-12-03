@@ -52637,10 +52637,10 @@ var app = new Vue({
       });
     });
   },
-  watch: {
-    messages: function messages(val) {
-      this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight;
-    }
+  updated: function updated() {
+    this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight;
+    console.log("scrollTop:", this.$refs.scrollParent.scrollTop);
+    console.log("scrollHeight:", this.$refs.scrollParent.scrollHeight);
   },
   methods: {
     fetchMessages: function fetchMessages() {

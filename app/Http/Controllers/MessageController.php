@@ -52,6 +52,7 @@ class MessageController extends Controller
                 'owner_id' => $user->id
             ]);
 
+
             //broadcast lex response
             broadcast(new MessageSentEvent($lex_response_message, $lex_user, $user->id));
         } catch (AwsException $e) {

@@ -54,10 +54,10 @@ const app = new Vue({
             });
     },
 
-    watch: {
-        messages: function(val){
-            this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight
-        }
+    updated: function () {
+        this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight 
+            console.log("scrollTop:",this.$refs.scrollParent.scrollTop);
+            console.log("scrollHeight:",this.$refs.scrollParent.scrollHeight);
     },
 
     methods: {
