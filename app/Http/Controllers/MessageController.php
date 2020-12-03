@@ -47,10 +47,12 @@ class MessageController extends Controller
                 'userId' => $user->name, // REQUIRED
             ]);
             $lex_user = User::where('name','lex')->first();
-            $lex_response_message = $lex_user->messages()->create([
-                'message' => $result['message'],
-                'owner_id' => $user->id
-            ]);
+            if($result['message']){
+                $lex_response_message = $lex_user->messages()->create([
+                    'message' => $result['message'],
+                    'owner_id' => $user->id
+                ]);
+            }
 
 
             //broadcast lex response
