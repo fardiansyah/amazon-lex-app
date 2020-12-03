@@ -30,16 +30,26 @@ Vue.prototype.$userId = document.querySelector("meta[name='user_id']").getAttrib
 
 import Messages from './components/Messages.vue'
 import Form from './components/Form.vue'
+import Lex from './components/Lex.vue'
 
 Vue.component('chat-messages', Messages);
 Vue.component('chat-form', Form);
+Vue.component('lex-response', Lex);
 
 const app = new Vue({
     el: '#app',
 
     data: {
         messages: [],
-        newMessage: ''
+        newMessage: '',
+        lexData: {
+            dialogState: "",
+            intentName: "",
+            nluIntentConfidence:{
+                score: 0
+            },
+            slots: {}
+        }
     },
 
     created() {
@@ -51,13 +61,15 @@ const app = new Vue({
                     message: e.message.message,
                     user: e.user
                 });
+            })
+            .listen('.chat.lex-response-received', (e) => {
+                console.log("LEX RESPONSE:",e.message);
+                this.lexData = e.message;
             });
     },
 
     updated: function () {
         this.$refs.scrollParent.scrollTop = this.$refs.scrollParent.scrollHeight 
-            console.log("scrollTop:",this.$refs.scrollParent.scrollTop);
-            console.log("scrollHeight:",this.$refs.scrollParent.scrollHeight);
     },
 
     methods: {

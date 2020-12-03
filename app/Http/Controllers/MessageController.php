@@ -47,14 +47,18 @@ class MessageController extends Controller
                 'userId' => $user->name, // REQUIRED
             ]);
             $lex_user = User::where('name','lex')->first();
-            if($result['message']){
-                $lex_response_message = $lex_user->messages()->create([
-                    'message' => $result['message'],
-                    'owner_id' => $user->id
-                ]);
+            if($result){
+                //broadcast lex result
+                broadcast(new LexResponseEvent($result->toArray(), $user->id));
+                if($result['message']){
+                    $lex_response_message = $lex_user->messages()->create([
+                        'message' => $result['message'],
+                        'owner_id' => $user->id
+                    ]);
 
-                //broadcast lex response
-                broadcast(new MessageSentEvent($lex_response_message, $lex_user, $user->id));
+                    //broadcast lex response
+                    broadcast(new MessageSentEvent($lex_response_message, $lex_user, $user->id));
+                }
             }
             
         } catch (AwsException $e) {
