@@ -40437,6 +40437,16 @@ var render = function() {
     _c("li", { staticClass: "left clearfix" }, [
       _c("div", [
         _vm._v(
+          "\n            sessionId: " +
+            _vm._s(_vm.data.sessionId) +
+            "\n        "
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("li", { staticClass: "left clearfix" }, [
+      _c("div", [
+        _vm._v(
           "\n            dialogState: " +
             _vm._s(_vm.data.dialogState) +
             "\n        "
@@ -40449,16 +40459,6 @@ var render = function() {
         _vm._v(
           "\n            intentName: " +
             _vm._s(_vm.data.intentName) +
-            "\n        "
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("li", { staticClass: "left clearfix" }, [
-      _c("div", [
-        _vm._v(
-          "\n            nluIntentConfidence - score: " +
-            _vm._s(_vm.data.nluIntentConfidence.score) +
             "\n        "
         )
       ])
@@ -52747,9 +52747,7 @@ var app = new Vue({
     lexData: {
       dialogState: "",
       intentName: "",
-      nluIntentConfidence: {
-        score: 0
-      },
+      sessionId: "",
       slots: {}
     }
   },
