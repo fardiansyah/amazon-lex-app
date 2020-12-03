@@ -2,7 +2,7 @@
 
 Clone this repo
 ```console
-git clone https://github.com/fardiansyah/amazon-lex-app.git
+$ git clone https://github.com/fardiansyah/amazon-lex-app.git
 ```
 
 Run these commands inside application directory.
