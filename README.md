@@ -1,5 +1,10 @@
 # Setup Guide
 
+Clone this repo
+```console
+git clone https://github.com/fardiansyah/amazon-lex-app.git
+```
+
 Run these commands inside application directory.
 
 ```console
@@ -7,7 +12,7 @@ $ composer install
 $ cp .env.example .env
 ```
 
-Open .env file and set AWS and Larasocket configuration
+Open .env file and set AWS and Larasocket configuration.
 ```text
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
@@ -21,7 +26,7 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 ```
-Back to application directory, and run this commands
+Back to application directory, and run these commands.
 
 ```console
 $ php artisan key:generate
